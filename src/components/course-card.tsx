@@ -1,19 +1,29 @@
 import type { Course, Student } from "@/lib/types";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@base-ui/react";
+import { Trash2 } from "lucide-react";
 type CourseCardProps = {
   course: Course;
   student: Student;
   enrolledAt?: string;
+  onCancel?: (courseId: string) => void;
 };
 
-export function CourseCard({ course, student, enrolledAt }: CourseCardProps) {
+export function CourseCard({ course, student, enrolledAt, onCancel }: CourseCardProps) {
+  const registeredAt = new Date().toLocaleString("th-TH", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  hour12: false,
+});
   return (
     <Card>
       <CardHeader>
@@ -21,15 +31,45 @@ export function CourseCard({ course, student, enrolledAt }: CourseCardProps) {
         <CardDescription>
           รหัสวิชา: {course.courseId} · ผู้สอน: {course.instructors.join(", ")}
         </CardDescription>
+        <CardAction>
+          {enrolledAt ? (
+    <span className="rounded-full px-3 py-1 text-xs
+      bg-amber-500/20 text-amber-700
+      dark:bg-purple-500/20 dark:text-purple-400">
+      ลงทะเบียนแล้ว
+    </span>
+  ) : (
+    <span className="rounded-full px-3 py-1 text-xs
+      bg-purple-500/20 text-purple-700
+      dark:bg-amber-500/20 dark:text-amber-400">
+      เปิดรับ
+    </span>
+  )}
+        </CardAction>
       </CardHeader>
       <CardContent className="flex items-end justify-between">
-        <div className="text-xs text-muted-foreground">
-          <p>
-            ชื่อ นศ.: {student.firstName} {student.lastName}
-          </p>
-          <p>โปรแกรม: {student.program}</p>
-          <p>ลงทะเบียนเมื่อ: {enrolledAt}</p>
-        </div>
+        {enrolledAt ? (
+    <>
+      <div className="text-xs text-muted-foreground">
+        <p>
+          ชื่อ นศ.: {student.firstName} {student.lastName}
+        </p>
+
+        <p>โปรแกรม: {student.program}</p>
+
+        <p>ลงทะเบียนเมื่อ: {registeredAt} {enrolledAt}</p>
+      </div>
+
+      <Button
+        variant="ghost"
+        size="icon"
+        className="text-red-400 hover:text-red-500"
+        onClick={() => onCancel?.(course.courseId)}
+      >
+        <Trash2 />
+      </Button>
+    </>
+  ) : null}
       </CardContent>
     </Card>
   );

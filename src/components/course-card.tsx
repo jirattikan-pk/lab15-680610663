@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@base-ui/react";
+import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 type CourseCardProps = {
   course: Course;

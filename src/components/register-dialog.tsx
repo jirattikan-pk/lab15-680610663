@@ -16,10 +16,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -65,7 +61,7 @@ export function RegisterDialog({onRegister, enrollments}:RegisterDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {/* ปุ่มที่กดแล้วเปิด Dialog */}
-      <DialogTrigger asChild>
+      <DialogTrigger>
         <Button>ลงทะเบียน</Button>
       </DialogTrigger>
 
@@ -79,8 +75,12 @@ export function RegisterDialog({onRegister, enrollments}:RegisterDialogProps) {
           
           <div className="grid min-w-0 gap-4">
             <div className="grid min-w-0 gap-2">
-              <Label htmlFor="coursesSelect">วิชา</Label>
-              <Select value={courseId} onValueChange={setCourseId}>
+              <Label htmlFor="courseSelect">วิชา</Label>
+              <Select value={courseId} onValueChange={(value) => {
+                if (value !== null) {
+                  setCourseId(value);
+                }
+              }}>
                 <SelectTrigger id="courseSelect" className="w-full min-w-0">
                   <SelectValue  placeholder="เลือกวิชา">
                     {courseId

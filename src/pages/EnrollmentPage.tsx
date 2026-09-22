@@ -6,8 +6,6 @@ import { courses, currentStudent  } from "@/lib/mock-data";
 type RegisterData = {
   courseId: string;
   time: string;
-  fullName: string;
-  program: string;
 };
 
 export default function Enrollent() {

@@ -1,13 +1,10 @@
 import {
   Card,
   CardHeader,
-  CardFooter,
   CardTitle,
-  CardAction,
-  CardDescription,
   CardContent,} from "@/components/ui/card";
-import  {Button, buttonVariants} from "@/components/ui/button";
-import { Link, useLocation } from "react-router";
+import  {Button} from "@/components/ui/button";
+import { Link} from "react-router";
 import { currentStudent } from "@/lib/mock-data";
 
 export default function HomePage() {

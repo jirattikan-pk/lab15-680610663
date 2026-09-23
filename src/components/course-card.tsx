@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+
 type CourseCardProps = {
   course: Course;
   student: Student;
@@ -32,17 +34,17 @@ export function CourseCard({ course, student, enrolledAt, onCancel }: CourseCard
         </CardDescription>
         <CardAction>
           {enrolledAt ? (
-    <span className="rounded-full px-3 py-1 text-xs
+    <Badge variant="secondary" className="
       bg-amber-500/20 text-amber-700
       dark:bg-purple-500/20 dark:text-purple-400">
       ลงทะเบียนแล้ว
-    </span>
+    </Badge>
   ) : (
-    <span className="rounded-full px-3 py-1 text-xs
+    <Badge variant="secondary" className="
       bg-purple-500/20 text-purple-700
       dark:bg-amber-500/20 dark:text-amber-400">
       เปิดรับ
-    </span>
+    </Badge>
   )}
         </CardAction>
       </CardHeader>

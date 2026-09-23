@@ -104,7 +104,7 @@ export function RegisterDialog({onRegister, enrollments}:RegisterDialogProps) {
 
           <div className="space-y-2">
             <Label htmlFor="time">เวลา</Label>
-            <Input type="time" id="time" value={time} onChange={(t) => setTime(t.target.value)} />
+            <Input type="time" id="time" className="bg-amber" value={time} onChange={(t) => setTime(t.target.value)} />
           </div>
 
           <div className="space-y-2">
